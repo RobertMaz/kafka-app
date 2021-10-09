@@ -2,13 +2,10 @@
 
 export SERVER=localhost:9092
 
-cd consumer
-sh ./mvnw clean package
-docker build -t consumer .
+mvn clean package -f consumer/pom.xml
+docker build -t consumer consumer/
 
-cd ../producer
-sh ./mvnw clean package
-docker build -t producer .
+mvn clean package -f producer/pom.xml
+docker build -t producer producer/
 
-cd ../
 docker-compose up
