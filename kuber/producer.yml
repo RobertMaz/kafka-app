@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: producer-service
+spec:
+  selector:
+    app: producer-service
+  ports:
+      - port: 8080
+        targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer-service
+  template:
+    metadata:
+      labels:
+        app: producer-service
+    spec:
+      containers:
+        - name: producer
+          imagePullPolicy: IfNotPresent
+          image: 'robertmaz/producer'
+          env:
+            - name: SERVER
+              value: kafka-service:9092
