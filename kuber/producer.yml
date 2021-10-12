@@ -8,14 +8,13 @@ spec:
   ports:
       - port: 8080
         targetPort: 8080
-  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: producer-service
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: producer-service
