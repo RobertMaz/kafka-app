@@ -3,4 +3,4 @@ In this project Kafka, Zookepeer, Spring Boot applications up in docker with doc
 * For up project, just use build.sh script.
 * For send message to default topic 'users', just use rest api with endpoind 'http://localhost:8080/kafka/publish/{your_message}'
 
-## Samples with minikube & cloud system, in another branches
+## Kubernetes samples with minikube & cloud system, in another branches
