@@ -15,8 +15,8 @@ public class KafkaController {
 
   @GetMapping(value = "/publish/{msg}")
   public void sendMessageToKafka(
-    @PathVariable
-      String msg) {
+      @PathVariable
+          String msg) {
     this.producer.sendMessage(msg);
   }
 }
