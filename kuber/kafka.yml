@@ -45,3 +45,10 @@ spec:
                   fieldPath: status.podIP
             - name: 'KAFKA_BROKER_ID'
               value: '1'
+          volumeMounts:
+            - mountPath: /kafka
+              name: pvcvolume
+      volumes:
+        - name: pvcvolume
+          persistentVolumeClaim:
+            claimName: fileshare
