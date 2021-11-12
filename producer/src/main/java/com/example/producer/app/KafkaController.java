@@ -1,5 +1,6 @@
 package com.example.producer.app;
 
+import com.example.producer.dto.MessageDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,6 @@ public class KafkaController {
   public void sendMessageToKafka(
       @PathVariable
           String msg) {
-    this.producer.sendMessage(msg);
+    this.producer.sendMessage(new MessageDTO(msg));
   }
 }

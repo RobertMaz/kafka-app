@@ -1,8 +1,10 @@
 package com.example.producer.app;
 
+import com.example.producer.dto.MessageDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,13 @@ import org.springframework.stereotype.Service;
 public class Producer {
 
   private static final Logger logger = LoggerFactory.getLogger(Producer.class);
-  private static final String TOPIC = "users";
 
-  private final KafkaTemplate<String, String> kafkaTemplate;
+  @Value("${producer.topic}")
+  private String TOPIC;
 
-  public void sendMessage(String message) {
+  private final KafkaTemplate<String, MessageDTO> kafkaTemplate;
+
+  public void sendMessage(MessageDTO message) {
     logger.info("### -> Producing message -> {}", message);
     this.kafkaTemplate.send(TOPIC, message);
   }

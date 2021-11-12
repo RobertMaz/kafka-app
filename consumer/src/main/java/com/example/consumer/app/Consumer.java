@@ -1,5 +1,6 @@
 package com.example.consumer.app;
 
+import com.example.consumer.dto.MessageDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,10 +13,11 @@ public class Consumer {
 
   private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-  @KafkaListener(topics = "users", groupId = "first")
+
+  @KafkaListener(topics = "${consumer.topic}", groupId = "${group.id}")
   public void consume(
-      @Payload final String msgBody, Acknowledgment ack) {
-    logger.info("### -> Consumed message -> {}", msgBody);
+      @Payload final MessageDTO msg, Acknowledgment ack) {
+    logger.info("### -> Consumed message -> {}", msg);
     ack.acknowledge();
   }
 }
