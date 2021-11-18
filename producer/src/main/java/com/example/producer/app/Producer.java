@@ -1,6 +1,6 @@
 package com.example.producer.app;
 
-import com.example.producer.dto.MessageDTO;
+import app.common.dto.MessageFirst;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +15,12 @@ public class Producer {
   private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
   @Value("${producer.topic}")
-  private String TOPIC;
+  private String topic;
 
-  private final KafkaTemplate<String, MessageDTO> kafkaTemplate;
+  private final KafkaTemplate<String, Object> kafkaTemplate;
 
-  public void sendMessage(MessageDTO message) {
+  public void sendMessage(MessageFirst message) {
     logger.info("### -> Producing message -> {}", message);
-    this.kafkaTemplate.send(TOPIC, message);
+    this.kafkaTemplate.send(topic, message.getKey(), message);
   }
 }

@@ -1,4 +1,4 @@
-package com.example.consumer.dto;
+package app.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class MessageDTO {
+public class MessageFirst {
 
   private String msg;
+
+  private String key;
 }

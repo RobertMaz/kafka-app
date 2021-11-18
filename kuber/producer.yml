@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: producer
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           image: 'robertmaz/producer'
           env:
             - name: SERVER

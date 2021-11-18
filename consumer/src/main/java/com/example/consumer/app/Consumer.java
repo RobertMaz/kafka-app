@@ -1,6 +1,7 @@
 package com.example.consumer.app;
 
-import com.example.consumer.dto.MessageDTO;
+import app.common.dto.MessageFirst;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -13,11 +14,12 @@ public class Consumer {
 
   private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-
   @KafkaListener(topics = "${consumer.topic}", groupId = "${group.id}")
-  public void consume(
-      @Payload final MessageDTO msg, Acknowledgment ack) {
-    logger.info("### -> Consumed message -> {}", msg);
+  public void consumerFirst(ConsumerRecord<String, MessageFirst> first,
+      @Payload final MessageFirst msg, Acknowledgment ack) throws InterruptedException {
+    logger.info("### -> Consumed message -> {}. partition -> {}", msg,
+        first.partition());
+    Thread.sleep(10000);
     ack.acknowledge();
   }
 }
