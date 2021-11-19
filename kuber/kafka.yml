@@ -48,6 +48,7 @@ spec:
           volumeMounts:
             - mountPath: /kafka
               name: pvcvolume
+          terminationMessagePolicy: FallbackToLogsOnError
       volumes:
         - name: pvcvolume
           persistentVolumeClaim:

@@ -36,3 +36,4 @@ spec:
           ports:
             - containerPort: 2181
               hostPort: 2181
+          terminationMessagePolicy: FallbackToLogsOnError
